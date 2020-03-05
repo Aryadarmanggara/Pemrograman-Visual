@@ -56,6 +56,21 @@ const createWindowCreator = () => {
     createWindow.on("close", () => (createWindow = null));
 };
 
+const aboutWindowCreator = () => {
+    createWindow = new BrowserWindow({
+        webPreferences: {
+            nodeIntegration: true
+        },
+        width: 600,
+        height: 400,
+        title:"About"
+    });
+
+    createWindow.setMenu(null);
+    createWindow.loadURL(`file://${__dirname}/about.html`);
+    createWindow.on("close", () => (createWindow = null));
+};
+
 ipcMain.on("appointment:create", (event, appointment) => {
     console.log(appointment);
 });
@@ -91,8 +106,14 @@ const menuTemplate = [{
 
         label: "View",
         submenu: [{role: "Reload"}, {role: "toggledevtools"}]
+    },
+    
+    {
+        label: "About",
+        click(){
+            aboutWindowCreator();
+        }
     }
-
 
 
 ]
