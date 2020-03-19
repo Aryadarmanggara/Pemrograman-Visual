@@ -11,7 +11,7 @@ app.on("ready", ()=> {
         webPreferences: {
             nodeIntegration: true
         },
-        title: "Aplikasi dokter2"
+        title: "Aplikasi Arya Darma"
     });
 
     todayWindow.loadURL(`file://${__dirname}/index.html`);
@@ -75,8 +75,16 @@ ipcMain.on("appointment:create", (event, appointment) => {
     console.log(appointment);
 });
 
-ipcMain.on("appointment:request:list", (event, appointment) => {
+ipcMain.on("appointment:request:list", event => {
     console.log("here");
+});
+
+ipcMain.on("appointment:request:index", event => {
+    console.log("here here");
+});
+
+ipcMain.on("appointment:done", (event, id) => {
+    console.log("here here here");
 });
 
 const menuTemplate = [{
