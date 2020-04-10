@@ -17,10 +17,11 @@
     } = electron;
     ipcRenderer.send("appointment:request:list");
 
-    ipcRenderer.on("appointment:request:list", (event, appointments) => {
-        const listDiv = document.getElementById("List")
-        appointments.foreach(appointment => {
+    ipcRenderer.on("appointment:response:list", (event, appointments) => {
+        const listDiv = document.getElementById("list")
+        appointments.forEach(appointment => {
             const appointmentDiv = document.createElement("div");
+            
             const nameParagraph = document.createElement("p");
             nameParagraph.innerHTML = `Name: ${appointment.name}`;
              
